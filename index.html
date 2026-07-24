@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Generator</title>
+<meta name="description" content="Instant QR code generator for text and URLs. Runs entirely in your browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="mark" aria-hidden="true">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+  <h1>QR Generator</h1>
+  <span class="tag">text &amp; URLs · instant</span>
+</header>
+
+<main>
+  <!-- Input panel -->
+  <section class="panel" aria-label="QR code settings">
+    <div class="field">
+      <label for="qrInput">Content</label>
+      <textarea id="qrInput" placeholder="Paste a URL or type any text…" autofocus spellcheck="false"></textarea>
+      <div class="meta-row">
+        <span id="charCount">0 chars</span>
+        <span id="inputError" class="error" role="alert"></span>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="opt-label" id="ecLabel">Error correction</span>
+      <div class="seg" role="group" aria-labelledby="ecLabel">
+        <button type="button" data-ec="L" aria-pressed="false"><span class="lvl">L</span><span class="pct">7%</span></button>
+        <button type="button" data-ec="M" aria-pressed="true"><span class="lvl">M</span><span class="pct">15%</span></button>
+        <button type="button" data-ec="Q" aria-pressed="false"><span class="lvl">Q</span><span class="pct">25%</span></button>
+        <button type="button" data-ec="H" aria-pressed="false"><span class="lvl">H</span><span class="pct">30%</span></button>
+      </div>
+      <p class="hint">Higher levels survive more damage or overlaid logos, but pack the code more densely.</p>
+    </div>
+
+    <div class="opt-grid">
+      <div class="field">
+        <label for="fgColor">Foreground</label>
+        <div class="color-row">
+          <input type="color" id="fgColor" value="#0A1628">
+          <code id="fgHex">#0A1628</code>
+        </div>
+      </div>
+      <div class="field">
+        <label for="bgColor">Background</label>
+        <div class="color-row">
+          <input type="color" id="bgColor" value="#FFFFFF">
+          <code id="bgHex">#FFFFFF</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="dlSize">Download size</label>
+      <select id="dlSize">
+        <option value="512">512 × 512 px</option>
+        <option value="1024" selected>1024 × 1024 px</option>
+        <option value="2048">2048 × 2048 px</option>
+        <option value="4096">4096 × 4096 px</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Preview panel -->
+  <section class="preview-panel" aria-label="QR code preview">
+    <div class="viewfinder">
+      <span class="c3"></span><span class="c4"></span>
+      <div class="qr-frame" id="qrFrame">
+        <canvas id="qrCanvas" aria-label="Generated QR code"></canvas>
+        <div class="empty">
+          Type something to generate a code
+          <br><span class="mono">// updates as you type</span>
+        </div>
+        <div class="scanline"></div>
+      </div>
+    </div>
+    <div class="qr-meta" id="qrMeta"></div>
+    <div class="actions">
+      <button class="btn primary" id="dlPng" disabled>Download PNG</button>
+      <button class="btn" id="dlSvg" disabled>Download SVG</button>
+      <button class="btn" id="copyPng" disabled>Copy image</button>
+    </div>
+  </section>
+</main>
+
+<footer>generated locally in your browser — nothing is uploaded</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
