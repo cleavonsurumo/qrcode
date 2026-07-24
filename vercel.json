@@ -1,14 +1,14 @@
 {
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "qr-code-snowy-ten\\.vercel\\.app|qr-code-cleavon-surumos-projects\\.vercel\\.app"
         }
       ],
-      "destination": "https://qr-code.cleavon.ke/:path*",
+      "destination": "https://qr-code.cleavon.ke/$1",
       "permanent": true
     }
   ]
