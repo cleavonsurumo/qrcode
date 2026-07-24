@@ -3,7 +3,10 @@
     {
       "source": "/:path*",
       "has": [
-        { "type": "host", "value": "qr-code-snowy-ten.vercel.app" }
+        {
+          "type": "host",
+          "value": "qr-code-snowy-ten\\.vercel\\.app|qr-code-cleavon-surumos-projects\\.vercel\\.app"
+        }
       ],
       "destination": "https://qr-code.cleavon.ke/:path*",
       "permanent": true
