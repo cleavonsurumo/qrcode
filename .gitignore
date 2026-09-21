@@ -1,0 +1,9 @@
+node_modules/
+
+# Local dev-server scaffolding only (added to run `npm run dev`).
+# Kept out of the repo so the Vercel deploy stays a pure static site.
+package.json
+package-lock.json
+
+.DS_Store
+Thumbs.db
