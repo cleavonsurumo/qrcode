@@ -40,13 +40,22 @@
 
     <div class="field">
       <span class="opt-label" id="ecLabel">Error correction</span>
-      <div class="seg" role="group" aria-labelledby="ecLabel">
+      <div class="seg" id="ecSeg" role="group" aria-labelledby="ecLabel">
         <button type="button" data-ec="L" aria-pressed="false"><span class="lvl">L</span><span class="pct">7%</span></button>
         <button type="button" data-ec="M" aria-pressed="true"><span class="lvl">M</span><span class="pct">15%</span></button>
         <button type="button" data-ec="Q" aria-pressed="false"><span class="lvl">Q</span><span class="pct">25%</span></button>
         <button type="button" data-ec="H" aria-pressed="false"><span class="lvl">H</span><span class="pct">30%</span></button>
       </div>
       <p class="hint">Higher levels survive more damage or overlaid logos, but pack the code more densely.</p>
+    </div>
+
+    <div class="field">
+      <span class="opt-label" id="styleLabel">Module style</span>
+      <div class="seg seg-2" id="styleSeg" role="group" aria-labelledby="styleLabel">
+        <button type="button" data-style="square" aria-pressed="true"><span class="lvl">Square</span><span class="pct">classic</span></button>
+        <button type="button" data-style="dots" aria-pressed="false"><span class="lvl">Dots</span><span class="pct">rounded</span></button>
+      </div>
+      <p class="hint">Dots round the data modules. The three corner markers stay solid so scanners still lock on.</p>
     </div>
 
     <div class="opt-grid">
