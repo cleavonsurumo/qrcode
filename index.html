@@ -6,15 +6,21 @@
 <title>QR Generator</title>
 <meta name="description" content="Instant QR code generator for text and URLs. Runs entirely in your browser.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#153243">
+<meta name="theme-color" content="#E9EFF7">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 </head>
 <body>
+
+<div class="backdrop" aria-hidden="true">
+  <span class="blob b1"></span><span class="blob b2"></span>
+  <span class="slab s1"></span><span class="slab s2"></span>
+  <span class="slab s3"></span><span class="slab s4"></span>
+</div>
 
 <header>
   <div class="mark" aria-hidden="true">
@@ -46,14 +52,14 @@
         <button type="button" data-ec="Q" aria-pressed="false"><span class="lvl">Q</span><span class="pct">25%</span></button>
         <button type="button" data-ec="H" aria-pressed="false"><span class="lvl">H</span><span class="pct">30%</span></button>
       </div>
-      <p class="hint">Higher levels survive more damage or overlaid logos, but pack the code more densely.</p>
+      <p class="hint">Higher levels survive more damage and leave room for a bigger site icon on links, but pack the code more densely.</p>
     </div>
 
     <div class="field">
       <span class="opt-label" id="styleLabel">Module style</span>
       <div class="seg seg-2" id="styleSeg" role="group" aria-labelledby="styleLabel">
-        <button type="button" data-style="square" aria-pressed="true"><span class="lvl">Square</span><span class="pct">classic</span></button>
-        <button type="button" data-style="dots" aria-pressed="false"><span class="lvl">Dots</span><span class="pct">rounded</span></button>
+        <button type="button" data-style="square" aria-pressed="false"><span class="lvl">Square</span><span class="pct">classic</span></button>
+        <button type="button" data-style="dots" aria-pressed="true"><span class="lvl">Dots</span><span class="pct">rounded</span></button>
       </div>
       <p class="hint">Dots round the data modules. The three corner markers stay solid so scanners still lock on.</p>
     </div>
@@ -62,8 +68,8 @@
       <div class="field">
         <label for="fgColor">Foreground</label>
         <div class="color-row">
-          <input type="color" id="fgColor" value="#153243">
-          <code id="fgHex">#153243</code>
+          <input type="color" id="fgColor" value="#183867">
+          <code id="fgHex">#183867</code>
         </div>
       </div>
       <div class="field">

@@ -5,6 +5,8 @@ Instant QR code generator for text and URLs. Runs entirely in the browser — no
 **Features**
 - Live preview that updates as you type
 - Error correction levels L / M / Q / H
+- Links get the site's favicon in the centre, sized to what the error correction level can absorb (looked up via [icon.horse](https://icon.horse); only the domain is sent)
+- Dots (default) or square modules
 - Custom foreground and background colors
 - Download as PNG (up to 4096px) or vector SVG, or copy to clipboard
 
