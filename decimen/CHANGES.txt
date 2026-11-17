@@ -1,0 +1,32 @@
+Decimen Optical Transfer v0.5.3, modified for qrcode.cleavon.ke
+===============================================================
+
+send.html and receive.html are the single-file sender and receiver from
+Decimen Optical Transfer v0.5.3 (build 5301fc2):
+
+  Release: https://github.com/bashalarmistalt/decimen-optical-transfer/releases/tag/v0.5.3
+  Source:  https://github.com/bashalarmistalt/decimen-optical-transfer/tree/v0.5.3
+
+Copyright (c) 2026 Evan Crawley (Bash Alarmist) and contributors. Licensed
+under the GNU Affero General Public License v3.0 or later; see LICENSE and
+NOTICE in this folder (LICENSE.zxing-cpp and NOTICE.decimen-codec.md cover
+the bundled decoder).
+
+Modified on 2026-11-17. The edits are all in the HTML around the compiled
+code; the JavaScript and WebAssembly are byte-for-byte the release:
+
+  1. A comment under the licence banner marks each file as modified.
+  2. Content-Security-Policy: style-src also allows 'self' and
+     https://fonts.googleapis.com, and font-src allows
+     https://fonts.gstatic.com (it was 'none'). connect-src is unchanged,
+     so the pages still cannot send data anywhere.
+  3. <head> loads the Poppins font and theme.css (in this folder), which
+     restyles the pages to match the QR generator. theme.css is the full
+     source of the restyle.
+  4. The footer links to this file.
+  5. send.html only: the "Share the receiver" link points to
+     https://qrcode.cleavon.ke/#receive instead of https://decimen.app/receive/.
+
+patch.js (in this folder) applies edits 1-5 to a release:
+
+  node decimen/patch.js decimen-v0.5.3-sender.html decimen-v0.5.3-receiver.html

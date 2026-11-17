@@ -32,7 +32,15 @@
   <span class="tag">text &amp; URLs · instant</span>
 </header>
 
-<main>
+<nav class="modes" aria-label="Tools">
+  <div class="seg seg-3" id="modeSeg">
+    <button type="button" data-mode="generate" aria-pressed="true"><span class="lvl">Generate</span><span class="pct">QR code</span></button>
+    <button type="button" data-mode="send" aria-pressed="false"><span class="lvl">Send</span><span class="pct">file or text</span></button>
+    <button type="button" data-mode="receive" aria-pressed="false"><span class="lvl">Receive</span><span class="pct">with camera</span></button>
+  </div>
+</nav>
+
+<main id="generator">
   <!-- Input panel -->
   <section class="panel" aria-label="QR code settings">
     <div class="field">
@@ -114,8 +122,16 @@
   </section>
 </main>
 
+<!-- File transfer over animated QR codes: Decimen Optical Transfer (AGPL-3.0),
+     restyled to match this page. See decimen/CHANGES.txt. -->
+<section class="transfer" id="transfer" aria-label="File transfer" hidden>
+  <iframe id="sendFrame" data-src="decimen/send.html" title="Send a file or text as animated QR codes" allow="camera; fullscreen; clipboard-write; web-share" hidden></iframe>
+  <iframe id="receiveFrame" data-src="decimen/receive.html" title="Receive a file with the camera" allow="camera; fullscreen; clipboard-write; web-share" hidden></iframe>
+</section>
+
 <footer>generated locally in your browser — nothing is uploaded</footer>
 
 <script src="script.js"></script>
+<script src="transfer.js"></script>
 </body>
 </html>

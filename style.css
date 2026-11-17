@@ -20,6 +20,9 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* Author display rules (main is a grid) would otherwise beat the UA's [hidden]. */
+[hidden] { display: none !important; }
+
 body {
   background: linear-gradient(160deg, var(--bg-top) 0%, #DFE8F3 45%, var(--bg-bottom) 100%) fixed;
   color: var(--ink);
@@ -66,8 +69,10 @@ body {
 
 /* ---------- Glass surfaces ---------- */
 header,
+.modes .seg,
 .panel,
-.preview-panel {
+.preview-panel,
+.transfer {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.46));
   -webkit-backdrop-filter: blur(22px) saturate(160%);
   backdrop-filter: blur(22px) saturate(160%);
@@ -104,6 +109,23 @@ header {
 .mark span:nth-child(8) { background: var(--mist); }
 
 header h1 { font-size: 20px; font-weight: 700; letter-spacing: 0.01em; }
+
+/* ---------- Mode switch: Generate / Send / Receive ---------- */
+.modes {
+  display: flex;
+  justify-content: center;
+  width: calc(100% - 40px);
+  max-width: 988px;
+  margin: 18px auto 0;
+}
+.modes .seg {
+  width: 100%;
+  max-width: 460px;
+  padding: 5px;
+  border-radius: 18px;
+}
+.modes .seg button { border-radius: 13px; }
+.seg.seg-3 { grid-template-columns: repeat(3, 1fr); }
 header .tag {
   margin-left: auto;
   font-family: 'Poppins', sans-serif;
@@ -370,6 +392,43 @@ select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 }
 .btn.primary:hover { background: linear-gradient(180deg, #3A82C6, #2C6CB0); }
 
+/* ---------- File transfer panel ---------- */
+/* Fixed to the window height, not the content: the sender sizes its QR
+   stream to the frame's viewport, so a frame taller than the window would
+   push the code off screen. transfer.js measures --transfer-top. */
+.transfer {
+  width: calc(100% - 40px);
+  max-width: 988px;
+  height: max(460px, calc(100vh - var(--transfer-top, 200px) - 24px));
+  height: max(460px, calc(100svh - var(--transfer-top, 200px) - 24px));
+  margin: 28px auto 24px;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+.transfer iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+}
+/* The sender's tap-to-fullscreen fills its own viewport, so the frame
+   grows to the whole window while it is on. */
+body.transfer-full { overflow: hidden; }
+body.transfer-full .transfer {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  width: auto;
+  max-width: none;
+  height: auto;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: #FFFFFF;
+  box-shadow: none;
+}
+
 footer {
   text-align: center;
   padding: 0 16px 24px;
@@ -380,15 +439,17 @@ footer {
 
 /* Without blur the glass would be see-through, so fall back to near-solid panels */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  header, .panel, .preview-panel { background: rgba(255, 255, 255, 0.9); }
+  header, .modes .seg, .panel, .preview-panel, .transfer { background: rgba(255, 255, 255, 0.9); }
 }
 @media (prefers-reduced-transparency: reduce) {
-  header, .panel, .preview-panel { background: #F7FAFD; }
+  header, .modes .seg, .panel, .preview-panel, .transfer { background: #F7FAFD; }
   .slab, .blob { display: none; }
 }
 
 @media (max-width: 800px) {
   header { width: calc(100% - 32px); margin-top: 16px; }
+  .modes { width: calc(100% - 32px); margin-top: 14px; }
+  .transfer { width: calc(100% - 32px); margin: 20px auto 16px; border-radius: 24px; }
   main { grid-template-columns: 1fr; gap: 20px; padding: 20px 16px 36px; }
   .panel, .preview-panel { padding: 20px; border-radius: 24px; }
   .preview-panel { order: -1; }
