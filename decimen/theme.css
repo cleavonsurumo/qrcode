@@ -57,11 +57,14 @@ body {
    stays: it carries the copyright, licence and source links. */
 .site-header { display: none; }
 
+/* Side gutters come from the width, never from padding: the sender sizes its
+   code to the shell's outer width, so side padding would make the code wider
+   than the room it has and cut its edges off. */
 .send-shell,
 .receiver-shell {
-  width: 100%;
-  max-width: 720px;
-  padding: 28px 28px 12px;
+  width: min(760px, calc(100% - 56px));
+  max-width: none;
+  padding: 28px 0 12px;
 }
 
 /* ---------- Headings and labels ---------- */
@@ -227,11 +230,13 @@ a.download:hover { background: var(--primary-hi); }
   box-shadow: 0 0 0 4px rgba(54, 120, 181, 0.18);
 }
 
-/* The QR stream: a white card like the generator's preview frame. */
+/* The QR stream: a white card like the generator's preview frame. Thin
+   padding on purpose: the code already carries its own 4-module white quiet
+   zone, and every pixel given to padding is taken from the code's size. */
 .stage {
-  padding: 18px;
+  padding: 8px;
   border: 1px solid rgba(255, 255, 255, 0.85);
-  border-radius: 20px;
+  border-radius: 16px;
   box-shadow: var(--frame-shadow);
 }
 body.qr-full #stage { border: 0; box-shadow: none; }
@@ -360,6 +365,7 @@ video.received { border-radius: 16px; }
 
 @media (max-width: 680px) {
   .send-shell,
-  .receiver-shell { width: 100%; padding: 20px 18px 10px; }
+  .receiver-shell { width: calc(100% - 24px); padding: 18px 0 10px; }
+  .stage { padding: 4px; border-radius: 12px; }
   .site-footer { padding: 12px 18px 14px; }
 }

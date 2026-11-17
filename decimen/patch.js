@@ -46,6 +46,13 @@ const SENDER_ONLY = [
     from: 'value="https://decimen.app/receive/"',
     to: 'value="' + RECEIVER_URL + '"',
   },
+  {
+    // 60 fps outran the Android phone cameras this site was tested with; 24 is
+    // the rate Decimen's own "Nothing happening?" tips fall back to.
+    label: 'default tx fps',
+    from: '<option>24</option><option>30</option><option>55</option><option selected>60</option>',
+    to: '<option selected>24</option><option>30</option><option>55</option><option>60</option>',
+  },
 ];
 
 function replaceOnce(html, edit, file) {

@@ -74,6 +74,7 @@
     });
     generator.hidden = mode !== 'generate';
     transfer.hidden = mode === 'generate';
+    transfer.classList.toggle('is-send', mode === 'send'); // full-height panel, see style.css
     if (mode !== 'receive') unload(frames.receive);
     Object.keys(frames).forEach(function (key) {
       frames[key].hidden = key !== mode;
